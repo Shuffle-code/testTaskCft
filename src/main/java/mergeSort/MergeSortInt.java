@@ -1,86 +1,77 @@
 package mergeSort;
 
-// Java program to merge K sorted arrays of size n each.
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-class MergeSortInt {
-//    static final int N = 4;
-
-    // Merge arr1[0..n1-1] and arr2[0..n2-1] into
-    // arr3[0..n1+n2-1]
-    public void mergeArrays(int arr1[], int arr2[], int N1,
-                            int N2, int arr3[])
-    {
-        int i = 0, j = 0, k = 0;
-
-        // Traverse both array - Пройтись по обоим массивам
-        while (i < N1 && j < N2) {
-            // Check if current element of first
-            // array is smaller than current element
-            // of second array. If yes, store first
-            // array element and increment first array
-            // index. Otherwise do same with second array
-            // Проверяем, является ли текущий элемент первым
-            // массив меньше текущего элемента
-            // второго массива. Если да, сначала сохраните
-            // элемент массива и увеличиваем первый массив
-            // индекс. В противном случае сделайте то же самое со вторым массивом
-            if (arr1[i] < arr2[j])
-                arr3[k++] = arr1[i++];
-            else
-                arr3[k++] = arr2[j++];
+public class MergeSortInt {
+    public ArrayList<Integer> mergeNArrays(int[][] arr) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int[] ints = new int[0];
+        int j = arr.length;
+        while (j != 1) {
+            j-= 1;
+            for (int i = 0; i < arr.length; i += 1){ //or i += 2
+                if (i == arr.length - 1) {
+                } else if (i == 0)  {
+                    ints = mergeTwoArrays(arr[i], arr[i + 1]);
+                } else ints = mergeTwoArrays(ints, arr[i + 1]);
+            }
         }
-
-        // Store remaining elements of first array -Сохранить оставшиеся элементы первого массива
-        while (i < N1)
-            arr3[k++] = arr1[i++];
-
-        // Store remaining elements of second array
-        while (j < N2)
-            arr3[k++] = arr2[j++];
+        for (Integer k : ints) {
+            list.add(k);
+        }
+        return list;
     }
 
-    // A utility function to print array elements
-    public void printArray(int arr[], int size)
+    public int[] mergeTwoArrays(int[] array1, int[] array2) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        ArrayList<Integer> arr1 = new ArrayList<>();
+        for (int i : array1) {
+            arr1.add(i);
+        }
+        ArrayList<Integer> arr2 = new ArrayList<>();
+        for (int i : array2) {
+            arr2.add(i);
+        }
+        int i = 0, j = 0;
+        while (i + j < arr1.size() + arr2.size()) {
+            if (i != arr1.size() && (j == arr2.size() || arr1.get(i) < arr2.get(j))) {
+                arr.add(arr1.get(i));
+                i++;
+            } else {
+                arr.add(arr2.get(j));
+                j++;
+            }
+        }
+        int[] array = new int[arr.size()];
+        for (int k = 0; k < array.length; k++) {
+            array[k] = arr.get(k);
+        }
+        return array;
+    }
+
+    public void printArray(ArrayList<Integer> arr)
     {
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < arr.size(); i++)
+            System.out.print(arr.get(i) + " ");
+    }
+
+    public String byString(ArrayList<Integer> integerArrayList){
+        return integerArrayList.toString();
+    }
+
+    public void printArray(List<Integer> arr)
+    {
+        for (int i = 0; i < arr.size(); i++)
+            System.out.print(arr.get(i) + " ");
+    }
+
+    public void printArray(int[] arr)
+    {
+        for (int i = 0; i < arr.length; i++)
             System.out.print(arr[i] + " ");
     }
-
-    // This function takes an array of arrays as an argument
-    // and All arrays are assumed to be sorted. It merges
-    // them together and prints the final sorted output.
-    //Эта функция принимает массив массивов в качестве аргумента
-    // и Предполагается, что все массивы отсортированы. Он сливается
-    // их вместе и выводит окончательный отсортированный вывод.
-    public void mergeKArrays(int arr[][], int i, int j,
-                             int output[])
-    {
-        // if one array is in range
-        if (i == j) {
-            for (int p = 0; p < arr[i].length; p++)
-                output[p] = arr[i][p];
-            return;
-        }
-
-        // if only two arrays are left them merge them - если осталось только два массива, они объединяют их
-        if (j - i == 1) {
-            mergeArrays(arr[i], arr[j], arr[i].length, arr[j].length, output);
-            return;
-        }
-
-        // output arrays
-        int[] out1 = new int[arr[i].length * (((i + j) / 2) - i + 1)];
-        int[] out2 = new int[arr[j].length * (j - ((i + j) / 2))];
-
-        // divide the array into halves
-        mergeKArrays(arr, i, (i + j) / 2, out1);
-        mergeKArrays(arr, (i + j) / 2 + 1, j, out2);
-
-        // merge the output array
-        mergeArrays(out1, out2, arr[i].length * (((i + j) / 2) - i + 1),
-                arr[j].length * (j - ((i + j) / 2)), output);
-    }
-
 
 
 }
