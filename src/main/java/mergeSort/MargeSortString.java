@@ -2,15 +2,14 @@ package mergeSort;
 
 import java.util.ArrayList;
 
-public class MargeSortString {
-
-    public ArrayList<String> mergeNArrays(String[][] arr) {
+public class MargeSortString{
+    public ArrayList<String> mergeNArrays(String[][] arr)  {
         ArrayList<String> list = new ArrayList<>();
         String[] ints = new String[0];
         int j = arr.length;
         while (j != 1) {
             j-= 1;
-            for (int i = 0; i < arr.length; i += 2){ //or i += 2
+            for (int i = 0; i < arr.length; i += 1){ //or i += 2
                 if (i == arr.length - 1) {
                 } else if (i == 0)  {
                     ints = mergeTwoArrays(arr[i], arr[i + 1]);
@@ -22,7 +21,6 @@ public class MargeSortString {
         }
         return list;
     }
-
     public String[] mergeTwoArrays(String[] array1, String[] array2) {
         ArrayList<String> arr = new ArrayList<>();
         ArrayList<String> arr1 = new ArrayList<>();
@@ -51,7 +49,6 @@ public class MargeSortString {
         }
         return array;
     }
-
     public int compareStrings(String word1, String word2)
     {
         for(int i = 0; i < Math.min(word1.length(), word2.length()); i++)
@@ -64,49 +61,4 @@ public class MargeSortString {
         else
             return 0;
     }
-    public String[] stringArraySort(String[] words)
-    {
-        for(int i = 0; i < words.length - 1; i++)
-        {
-            for(int j = i+1; j < words.length; j++)
-            {
-                if(compareStrings(words[i], words[j]) > 0)//words[i] is greater than words[j]
-                {
-                    String temp = words[i];
-                    words[i] = words[j];
-                    words[j] = temp;
-                }
-            }
-        }
-        return words;
-    }
-
-//    public static void main(String[] args) throws Exception
-//    {
-//        // Custom string input
-//        String str = "geeksforgeeks";
-//        // Converting string into an array for computation
-//        char arr[] = str.toCharArray();
-//        // Nested loops for comparison of characters
-//        // in above character array
-//        char temp;
-//        int i = 0;
-//        while (i < arr.length) {
-//            int j = i + 1;
-//            while (j < arr.length) {
-//                if (arr[j] < arr[i]) {
-//
-//                    // Comparing the characters one by one
-//                    temp = arr[i];
-//                    arr[i] = arr[j];
-//                    arr[j] = temp;
-//                }
-//                j += 1;
-//            }
-//            i += 1;
-//        }
-//        // By now loop is done means we have
-//        // iterated the whole array
-//        System.out.println(arr);
-//    }
 }

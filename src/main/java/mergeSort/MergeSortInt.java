@@ -1,10 +1,6 @@
 package mergeSort;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class MergeSortInt {
+public class MergeSortInt{
     public ArrayList<Integer> mergeNArrays(int[][] arr) {
         ArrayList<Integer> list = new ArrayList<>();
         int[] ints = new int[0];
@@ -23,7 +19,6 @@ public class MergeSortInt {
         }
         return list;
     }
-
     public int[] mergeTwoArrays(int[] array1, int[] array2) {
         ArrayList<Integer> arr = new ArrayList<>();
         ArrayList<Integer> arr1 = new ArrayList<>();
@@ -50,29 +45,5 @@ public class MergeSortInt {
         }
         return array;
     }
-
-    public void printArray(ArrayList<Integer> arr)
-    {
-        for (int i = 0; i < arr.size(); i++)
-            System.out.print(arr.get(i) + " ");
-    }
-
-    public String byString(ArrayList<Integer> integerArrayList){
-        return integerArrayList.toString();
-    }
-
-    public void printArray(List<Integer> arr)
-    {
-        for (int i = 0; i < arr.size(); i++)
-            System.out.print(arr.get(i) + " ");
-    }
-
-    public void printArray(int[] arr)
-    {
-        for (int i = 0; i < arr.length; i++)
-            System.out.print(arr[i] + " ");
-    }
-
-
 }
 

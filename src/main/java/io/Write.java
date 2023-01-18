@@ -10,21 +10,15 @@ import java.util.Collections;
 
 public class Write {
     private static Path storageString = Path.of("C:\\Users\\79130\\IdeaProjects\\testTaskCft\\storage\\int");
-    public void writeExample(String str, String outputFileName) throws IOException {
-        FileWriter file = new FileWriter(String.valueOf(storageString.resolve(outputFileName)));
-        file.write(String.valueOf(str));
-        file.close();
-    }
-
     public void writeExampleNl(ArrayList<Integer> integerArrayList, String outputFileName) throws IOException {
-        FileWriter file = new FileWriter(String.valueOf(storageString.resolve(outputFileName)));
-        Collections.reverse(integerArrayList);
+        File file = new File(outputFileName);
+        if (!file.exists()) file.createNewFile();
+        FileWriter fileWriter = new FileWriter(String.valueOf(storageString.resolve(outputFileName)));
         for (int s : integerArrayList) {
-            file.write(s + System.getProperty("line.separator"));
+            fileWriter.write(s + System.getProperty("line.separator"));
         }
-        file.close();
+        fileWriter.close();
     }
-
     public ArrayList<Integer> reverse(ArrayList<Integer> list) {
         if(list.size() > 1) {
             Integer value = list.remove(0);
@@ -33,29 +27,27 @@ public class Write {
         }
         return list;
     }
-
     public void writeExampleNlRevers(ArrayList<Integer> integerArrayList, String outputFileName) throws IOException {
-        FileWriter file = new FileWriter(String.valueOf(storageString.resolve(outputFileName)));
+        File file = new File(outputFileName);
         reverse(integerArrayList);
+        if (!file.exists()) file.createNewFile();
+        FileWriter fileWrite = new FileWriter(String.valueOf(storageString.resolve(outputFileName)));
         for (int s : integerArrayList) {
-            file.write(s + System.getProperty("line.separator"));
+            fileWrite.write(s + System.getProperty("line.separator"));
         }
-//        file.write(String.valueOf(str));
-        file.close();
+        fileWrite.close();
     }
 
-
-    public void writeFileTxtNl(String filePath, ArrayList<Integer> integerArrayList) {
+    public void writeFileTxtNL(String filePath, ArrayList<String> fileArrContent) {
         File file = new File(String.valueOf(filePath));
-        // if file doesnt exists, then create it
-        FileWriter fw = null;
+        FileWriter fileWriter = null;
         try {
             if (!file.exists()) {
                 file.createNewFile();
             }
-            fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            for (int s : integerArrayList) {
+            fileWriter = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fileWriter);
+            for (String s : fileArrContent) {
                 bw.write(s + System.getProperty("line.separator"));
             }
             try {
@@ -68,27 +60,26 @@ public class Write {
             e.printStackTrace();
         } finally {
             try {
-                fw.close();
+                fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void writeFileTxt(String filePath, ArrayList<String> fileArrContent) {
+    public void writeFileTxtNLRevers(String filePath, ArrayList<String> fileArrContent) {
         File file = new File(String.valueOf(filePath));
-        // if file doesnt exists, then create it
-        FileWriter fw = null;
+        FileWriter fileWriter = null;
         try {
             if (!file.exists()) {
                 file.createNewFile();
             }
-            fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
+            fileWriter = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fileWriter);
+            Collections.reverse(fileArrContent);
             for (String s : fileArrContent) {
                 bw.write(s + System.getProperty("line.separator"));
             }
-
             try {
                 bw.close();
             } catch (IOException ex) {
@@ -99,7 +90,7 @@ public class Write {
             e.printStackTrace();
         } finally {
             try {
-                fw.close();
+                fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
