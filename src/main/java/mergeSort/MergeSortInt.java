@@ -1,13 +1,13 @@
 package mergeSort;
 import java.util.ArrayList;
 public class MergeSortInt{
-    public ArrayList<Integer> mergeNArrays(int[][] arr) {
+    public ArrayList<Integer> mergeArrays(int[][] arr) {
         ArrayList<Integer> list = new ArrayList<>();
         int[] ints = new int[0];
         int j = arr.length;
         while (j != 1) {
             j-= 1;
-            for (int i = 0; i < arr.length; i += 1){ //or i += 2
+            for (int i = 0; i < arr.length; i += 1){
                 if (i == arr.length - 1) {
                 } else if (i == 0)  {
                     ints = mergeTwoArrays(arr[i], arr[i + 1]);

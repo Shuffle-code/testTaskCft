@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Write {
-    private static Path storageString = Path.of("C:\\Users\\79130\\IdeaProjects\\testTaskCft\\storage\\int");
-    public void writeExampleNl(ArrayList<Integer> integerArrayList, String outputFileName) throws IOException {
+    public void writeExample(ArrayList<Integer> integerArrayList, String outputFileName, Path path) throws IOException {
         File file = new File(outputFileName);
         if (!file.exists()) file.createNewFile();
-        FileWriter fileWriter = new FileWriter(String.valueOf(storageString.resolve(outputFileName)));
+        FileWriter fileWriter = new FileWriter(String.valueOf(path.resolve(outputFileName)));
         for (int s : integerArrayList) {
             fileWriter.write(s + System.getProperty("line.separator"));
         }
@@ -27,18 +26,18 @@ public class Write {
         }
         return list;
     }
-    public void writeExampleNlRevers(ArrayList<Integer> integerArrayList, String outputFileName) throws IOException {
+    public void writeExampleRevers(ArrayList<Integer> integerArrayList, String outputFileName, Path path) throws IOException {
         File file = new File(outputFileName);
         reverse(integerArrayList);
         if (!file.exists()) file.createNewFile();
-        FileWriter fileWrite = new FileWriter(String.valueOf(storageString.resolve(outputFileName)));
+        FileWriter fileWrite = new FileWriter(String.valueOf(path.resolve(outputFileName)));
         for (int s : integerArrayList) {
             fileWrite.write(s + System.getProperty("line.separator"));
         }
         fileWrite.close();
     }
 
-    public void writeFileTxtNL(String filePath, ArrayList<String> fileArrContent) {
+    public void writeFileTxt(String filePath, ArrayList<String> fileArrContent) {
         File file = new File(String.valueOf(filePath));
         FileWriter fileWriter = null;
         try {
@@ -60,6 +59,7 @@ public class Write {
             e.printStackTrace();
         } finally {
             try {
+                assert fileWriter != null;
                 fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -67,7 +67,7 @@ public class Write {
         }
     }
 
-    public void writeFileTxtNLRevers(String filePath, ArrayList<String> fileArrContent) {
+    public void writeFileTxtRevers(String filePath, ArrayList<String> fileArrContent) {
         File file = new File(String.valueOf(filePath));
         FileWriter fileWriter = null;
         try {
@@ -90,6 +90,7 @@ public class Write {
             e.printStackTrace();
         } finally {
             try {
+                assert fileWriter != null;
                 fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
